@@ -1,31 +1,49 @@
 <!DOCTYPE html>
-<!-- A placeholder from the Home Sales template. Replace this file with your site's first page. -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Under construction</title>
-  <!-- An empty icon, so the browser doesn't log an error looking for favicon.ico -->
+  <meta name="description" content="Compare median home sale prices and qualifying sales across U.S. college towns.">
+  <title>College Town Home Sales</title>
   <link rel="icon" href="data:,">
-  <style>
-    :root { color-scheme: light dark; }
-    body {
-      max-width: 40rem;
-      margin: 0 auto;
-      padding: 3rem 1rem;
-      font-family: system-ui, sans-serif;
-      line-height: 1.5;
-    }
-    footer { margin-top: 3rem; font-size: 0.875rem; opacity: 0.75; }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <script src="sales.js" defer></script>
 </head>
 <body>
-  <main>
-    <h1>This site is under construction</h1>
-    <p>It will show findings from the College-town home sales dataset.</p>
+  <header class="hero">
+    <div class="container">
+      <h1>College Town<br>Home Sales</h1>
+      <p>Compare median home sale prices across cities near U.S. university campuses.</p>
+      <dl id="summary" hidden>
+        <div><dt>Cities and towns</dt><dd id="city-count"></dd></div>
+        <div><dt>Qualifying sales</dt><dd id="sale-count"></dd></div>
+      </dl>
+    </div>
+  </header>
+
+  <main class="container">
+    <section aria-labelledby="ranking-heading">
+      <h2 id="ranking-heading">Median sale price by city</h2>
+      <p class="method">Sales below <strong>$10,000</strong> are excluded from both the median and the sale count. Sales of $10,000 or more qualify.</p>
+      <p id="status" role="status">Loading home sale data…</p>
+      <noscript><p>Enable JavaScript to view the city rankings.</p></noscript>
+      <div class="table-card" id="ranking" hidden>
+        <table aria-labelledby="ranking-heading">
+          <thead>
+            <tr>
+              <th scope="col">City</th>
+              <th scope="col" aria-sort="descending">Median price</th>
+              <th scope="col">Qualifying sales</th>
+            </tr>
+          </thead>
+          <tbody id="city-rows"></tbody>
+        </table>
+      </div>
+    </section>
   </main>
-  <footer>
-    <p>Data: College-town home sales dataset, version 1.0 (2026). University of Illinois-Deloitte Foundation Center for Business Emerging Technologies. Data collected March 2026.</p>
+
+  <footer class="container">
+    <p>Source: <a href="data/college_town_home_sales.csv">College-town home sales dataset</a>, version 1.0. University of Illinois-Deloitte Foundation Center for Business Emerging Technologies. Data collected March 2026.</p>
   </footer>
 </body>
 </html>
